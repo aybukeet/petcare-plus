@@ -1,0 +1,212 @@
+<%- include('../partials/head') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="min-h-screen overflow-hidden">
+            <!-- CINEMATIC HERO SECTION -->
+            <section class="relative pt-32 pb-48 lg:pt-48 lg:pb-64 bg-white overflow-hidden">
+                <!-- Background Animations -->
+                <div class="absolute inset-0 z-0 pointer-events-none">
+                    <div
+                        class="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-pink-100 rounded-full blur-[150px] opacity-40 animate-pulse">
+                    </div>
+                    <div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[80%] bg-blue-100 rounded-full blur-[150px] opacity-40 animate-pulse"
+                        style="animation-delay: 1.5s;"></div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-6 relative z-10">
+                    <div class="flex flex-col lg:flex-row items-center gap-16">
+                        <!-- Text Area -->
+                        <div class="flex-1 text-center lg:text-left">
+                            <span
+                                class="inline-block px-4 py-1.5 bg-pink-100 text-pink-600 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-8 badge-pulse">
+                                Sonsuza Dek Dostluk
+                            </span>
+                            <h1 class="text-6xl md:text-8xl font-black text-gray-900 leading-[0.9] tracking-tight mb-8">
+                                Mükemmel <br> <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600">Arkadaşınızı</span>
+                                <br> Bulun
+                            </h1>
+                            <p class="text-xl text-gray-500 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium mb-10">
+                                Sevgi dolu bir yuva arayan binlerce dostumuzla tanışın. <br> Bugün bir hayat değiştirin,
+                                ömür boyu sevgi kazanın. 🐾
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                                <a href="/adopt"
+                                    class="w-full sm:w-auto px-10 py-5 bg-gray-900 text-white rounded-full font-black shadow-2xl hover:bg-pink-600 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 group">
+                                    ❤️ Evcil Hayvanlara Bak
+                                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                                </a>
+                                <a href="/lost"
+                                    class="w-full sm:w-auto px-10 py-5 bg-white text-gray-900 rounded-full font-black border border-gray-100 shadow-xl hover:bg-gray-50 transition-all active:scale-95 flex items-center justify-center gap-3">
+                                    🔍 Kayıp İlanları
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Hero Image / Visual -->
+                        <div class="flex-1 relative">
+                            <div class="relative z-10 transform rotate-2 hover:rotate-0 transition duration-700">
+                                <img src="/images/home-dog.png"
+                                    class="w-full max-w-md mx-auto rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] object-cover grayscale-[20%] hover:grayscale-0 transition duration-500" />
+                            </div>
+                            <!-- Floating Cards decoration -->
+                            <div class="absolute -top-10 -right-4 md:-right-10 glass-card p-6 rounded-3xl shadow-2xl animate-bounce hidden md:block"
+                                style="animation-duration: 4s;">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-xl">
+                                        <i class="fa-solid fa-shield-heart"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] font-black uppercase text-gray-400">Sağlık Durumu</p>
+                                        <p class="font-bold text-gray-800">Tam Onaylı</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FLOATING SERVICES SECTION -->
+            <section class="relative z-20 -mt-24 max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-xl hover-lift border border-gray-50 group">
+                        <div
+                            class="w-16 h-16 bg-pink-50 text-pink-500 rounded-3xl flex items-center justify-center text-3xl mb-8 group-hover:bg-pink-500 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-gray-800 mb-4 tracking-tight">Sahiplenme</h3>
+                        <p class="text-gray-500 font-medium leading-relaxed">Yeni bir aile üyesi edinmek için binlerce
+                            onaylı ilanı keşfedin.</p>
+                    </div>
+
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-xl hover-lift border border-gray-50 group">
+                        <div
+                            class="w-16 h-16 bg-blue-50 text-blue-500 rounded-3xl flex items-center justify-center text-3xl mb-8 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-gray-800 mb-4 tracking-tight">Kayıp Yardımı</h3>
+                        <p class="text-gray-500 font-medium leading-relaxed">Kayıp ilanlarını takip ederek onları
+                            yuvalarına kavuşturun.</p>
+                    </div>
+
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-xl hover-lift border border-gray-50 group">
+                        <div
+                            class="w-16 h-16 bg-orange-50 text-orange-500 rounded-3xl flex items-center justify-center text-3xl mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-medal"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-gray-800 mb-4 tracking-tight">Güvence</h3>
+                        <p class="text-gray-500 font-medium leading-relaxed">Tüm evcil hayvanlarımız uzman ekiplerce
+                            kontrol edilmiştir.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATS / SOCIAL PROOF -->
+            <section class="py-40 bg-[#fafafa]">
+                <div class="max-w-4xl mx-auto px-6 text-center">
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-20 tracking-tighter">İstatistiklerle
+                        <br> <span class="text-pink-500 underline decoration-pink-100 underline-offset-8">PetCare
+                            Plus</span></h2>
+
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-16">
+                        <div class="space-y-2">
+                            <p class="text-6xl font-black text-gray-900 tracking-tighter">10k<span
+                                    class="text-pink-500 tracking-normal">+</span></p>
+                            <p class="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Mutlu Yuva</p>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-6xl font-black text-gray-900 tracking-tighter">500<span
+                                    class="text-purple-500 tracking-normal">+</span></p>
+                            <p class="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Aktif İlan</p>
+                        </div>
+                        <div class="col-span-2 lg:col-span-1 space-y-2">
+                            <p class="text-6xl font-black text-gray-900 tracking-tighter">100<span
+                                    class="text-blue-500 tracking-normal">%</span></p>
+                            <p class="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Güvenilirlik</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURED PETS -->
+            <section class="py-40 bg-white">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                        <div>
+                            <span
+                                class="text-pink-500 text-xs font-black uppercase tracking-widest mb-4 inline-block">Haftanın
+                                Özelleri</span>
+                            <h2 class="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">Öne Çıkan
+                                Dostlarımız</h2>
+                        </div>
+                        <a href="/adopt"
+                            class="px-8 py-3 bg-gray-50 rounded-full font-bold text-gray-500 hover:bg-gray-100 transition whitespace-nowrap">Hepsini
+                            Gör</a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <!-- Manual Cards with Premium Style -->
+                        <% [{n:'Max', a:'2 Yaşında', c:'İstanbul', i:'pet1.png', clr:'pink'}, {n:'Luna', a:'1 Yaşında',
+                            c:'Ankara', i:'pet2.png', clr:'purple'}, {n:'Charlie', a:'3 Yaşında', c:'İzmir',
+                            i:'pet3.png', clr:'indigo'}].forEach(item=> { %>
+                            <div
+                                class="group bg-white rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden hover-lift">
+                                <div class="relative h-64 overflow-hidden">
+                                    <img src="/images/<%= item.i %>"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
+                                    <div
+                                        class="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-gray-800 uppercase tracking-widest">
+                                        <%= item.c %>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <h3
+                                        class="text-2xl font-black text-gray-800 mb-2 tracking-tight group-hover:text-<%= item.clr %>-500 transition">
+                                        <%= item.n %>
+                                    </h3>
+                                    <p class="text-gray-400 font-bold text-sm mb-6">
+                                        <%= item.a %>
+                                    </p>
+                                    <button
+                                        class="w-full py-4 bg-gray-50 group-hover:bg-<%= item.clr %>-500 group-hover:text-white rounded-2xl font-black text-sm transition-all duration-300">Detayları
+                                        Gör</button>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CALL TO ACTION -->
+            <section class="py-32 px-6">
+                <div
+                    class="max-w-7xl mx-auto bg-gray-900 rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
+                        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-[100px]"></div>
+                        <div class="absolute bottom-0 left-0 w-96 h-96 bg-pink-400 rounded-full blur-[100px]"></div>
+                    </div>
+
+                    <div class="relative z-10">
+                        <h2 class="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-tight">
+                            Fark Yaratmaya <br> Hazır mısınız?
+                        </h2>
+                        <p class="text-gray-400 text-xl max-w-2xl mx-auto font-medium mb-12">
+                            Topluluğumuza katılın ve yeni dostlarımıza sıcak yuvalar bulmamıza yardımcı olun!
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-6">
+                            <a href="/adopt"
+                                class="px-12 py-5 bg-pink-500 text-white rounded-full font-black shadow-lg shadow-pink-500/20 hover:scale-105 active:scale-95 transition-all">Sahiplendirmeye
+                                Başla</a>
+                            <a href="/announcements"
+                                class="px-12 py-5 bg-white/10 text-white backdrop-blur-md rounded-full font-black hover:bg-white/20 active:scale-95 transition-all">Son
+                                Haberler</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <%- include('../partials/footer') %>

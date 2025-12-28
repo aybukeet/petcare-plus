@@ -1,0 +1,97 @@
+<%- include("../../partials/head") %>
+    <%- include("../../partials/navbar") %>
+
+        <div class="min-h-screen bg-[#fafafa] relative flex items-center justify-center py-32 px-6 overflow-hidden">
+            <!-- BACKGROUND GLOWS (Warm Aesthetic) -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div
+                    class="absolute top-[-10%] right-[-10%] w-[50%] h-[70%] bg-pink-100 rounded-full blur-[150px] opacity-40 animate-pulse">
+                </div>
+                <div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[70%] bg-orange-50 rounded-full blur-[150px] opacity-40 animate-pulse"
+                    style="animation-delay: 1.5s;"></div>
+            </div>
+
+            <div class="max-w-3xl w-full relative z-10">
+                <!-- SPIRAL BINDING EFFECT -->
+                <div
+                    class="absolute -left-4 top-20 bottom-20 w-8 flex flex-col justify-around z-30 pointer-events-none opacity-50">
+                    <% for(let i=0; i<12; i++) { %>
+                        <div class="w-3.5 h-3.5 bg-gray-400 rounded-full shadow-inner border border-black/10"></div>
+                        <% } %>
+                </div>
+
+                <div class="glass-card rounded-[4rem] shadow-2xl flex overflow-hidden border border-white relative">
+                    <!-- Left Binding Strip -->
+                    <div class="w-6 bg-gradient-to-b from-pink-500 to-rose-600"></div>
+
+                    <!-- Form Content -->
+                    <div class="flex-1 notebook-bg p-12 md:p-20">
+                        <div class="flex flex-col md:flex-row items-center gap-6 mb-16 text-center md:text-left">
+                            <div
+                                class="w-20 h-20 bg-pink-500 text-white rounded-[2rem] flex items-center justify-center text-3xl shadow-xl shadow-pink-100 rotate-6 group hover:rotate-0 transition-transform">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </div>
+                            <div>
+                                <span
+                                    class="inline-block px-4 py-1.5 bg-pink-50 text-pink-600 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-3">Yeni
+                                    Kayıt</span>
+                                <h1 class="text-4xl font-black text-gray-900 tracking-tighter">Yeni Bir <span
+                                        class="text-pink-500">Anı Yaz</span></h1>
+                                <p class="text-gray-400 font-medium">Dostunuzun hatıra defterine yeni bir sayfa ekleyin.
+                                </p>
+                            </div>
+                        </div>
+
+                        <form action="/care/create" method="POST" class="space-y-8 relative z-10">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <label
+                                        class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Hayvanın
+                                        Adı</label>
+                                    <input name="pet_name" required placeholder="Kimin günlüğü?"
+                                        class="w-full bg-white/70 backdrop-blur-md border-2 border-transparent px-8 py-5 rounded-[2rem] text-xl font-black text-gray-800 focus:border-pink-300 focus:bg-white transition shadow-sm">
+                                </div>
+
+                                <div>
+                                    <label
+                                        class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Aktivite
+                                        Türü</label>
+                                    <select name="care_type" required
+                                        class="w-full bg-white/70 backdrop-blur-md border-2 border-transparent px-8 py-5 rounded-[2rem] text-lg font-bold text-gray-800 focus:border-pink-300 focus:bg-white transition shadow-sm appearance-none">
+                                        <option value="">Seçiniz...</option>
+                                        <option>Beslenme</option>
+                                        <option>Aşı</option>
+                                        <option>Veteriner</option>
+                                        <option>Egzersiz</option>
+                                        <option>Diğer</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Notunuz
+                                    (Hatıralar paha biçilemez...)</label>
+                                <textarea name="note" required rows="5"
+                                    placeholder="Bugün neler yaşandı? Nasıl hissetti?"
+                                    class="w-full bg-white/70 backdrop-blur-md border-2 border-transparent px-8 py-6 rounded-[3rem] text-xl font-medium text-gray-700 italic focus:border-pink-300 focus:bg-white transition shadow-sm leading-relaxed"></textarea>
+                            </div>
+
+                            <div class="pt-8 flex items-center justify-between">
+                                <a href="/care"
+                                    class="text-sm font-black text-gray-400 hover:text-gray-900 transition">Vazgeç ve
+                                    Kapat</a>
+                                <button
+                                    class="px-12 py-5 bg-gray-900 text-white rounded-[2rem] font-black text-lg shadow-2xl hover:bg-pink-600 transition-all duration-300 hover:scale-105 active:scale-95">
+                                    Günlüğe Ekle <i class="fa-solid fa-sparkles ml-2 opacity-50"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include("../../partials/footer") %>

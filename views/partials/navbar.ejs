@@ -1,0 +1,178 @@
+<style>
+    .nav-link {
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--main-pink);
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style>
+
+<nav class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-xl border-b border-pink-100 z-40">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <a href="/" class="flex items-center gap-2">
+            <img src="/images/paw.png" class="w-7 h-7" />
+            <span class="text-pink-600 font-bold text-2xl">
+                PetCare <span class="text-gray-700">Plus</span>
+            </span>
+        </a>
+
+        <!-- ORTA MENÜ -->
+        <div class="hidden md:flex items-center gap-8 text-gray-700 font-medium">
+
+            <a href="/" class="nav-link hover:text-pink-600 transition-colors">Ana Sayfa</a>
+
+            <!-- GUEST + USER -->
+            <% if (!user || user.role==="user" ) { %>
+                <a href="/adopt" class="nav-link hover:text-pink-600 transition-colors">Sahiplendir</a>
+                <a href="/lost" class="nav-link hover:text-pink-600 transition-colors">Kayıp Hayvanlar</a>
+                <a href="/announcements" class="nav-link hover:text-pink-600 transition-colors">Duyurular</a>
+                <a href="/gallery" class="nav-link hover:text-pink-600 transition-colors">Galeri</a>
+                <% } %>
+
+                    <!-- USER -->
+                    <% if (user && user.role==="user" ) { %>
+                        <a href="/lost/my" class="nav-link text-pink-600 font-semibold transition-colors">Kayıp
+                            İlanlarım</a>
+                        <a href="/care" class="nav-link text-pink-600 font-semibold transition-colors">Bakım
+                            Günlüğüm</a>
+                        <% } %>
+
+                            <!-- ADMIN -->
+                            <% if (user && user.role==="admin" ) { %>
+                                <a href="/admin/dashboard"
+                                    class="nav-link text-pink-600 font-semibold transition-colors">Admin Panel</a>
+                                <a href="/admin/adopt"
+                                    class="nav-link hover:text-pink-600 transition-colors">Sahiplendirme</a>
+                                <a href="/admin/adopt/requests"
+                                    class="nav-link hover:text-pink-600 transition-colors font-bold text-pink-500">Talepler</a>
+                                <a href="/admin/lost" class="nav-link hover:text-pink-600 transition-colors">Kayıp
+                                    İlanlar</a>
+                                <a href="/admin/lost/sightings"
+                                    class="nav-link hover:text-pink-600 transition-colors font-bold text-blue-500">Bildirimler</a>
+                                <a href="/admin/announcements"
+                                    class="nav-link hover:text-pink-600 transition-colors">Duyurular</a>
+                                <a href="/admin/gallery"
+                                    class="nav-link hover:text-pink-600 transition-colors">Galeri</a>
+                                <% } %>
+
+        </div>
+
+        <!-- SAĞ -->
+        <div class="flex items-center gap-3">
+
+            <% if (user) { %>
+                <div
+                    class="flex items-center gap-4 bg-gray-50 pr-4 pl-2 py-1.5 rounded-full border border-gray-100 shadow-sm">
+
+                    <!-- Bildirimler -->
+                    <a href="/user/notifications" class="relative group p-2">
+                        <i class="fa-regular fa-bell text-gray-500 hover:text-pink-600 transition text-lg"></i>
+                        <% if (locals.unreadCount> 0) { %>
+                            <span class="absolute top-1 right-1 flex h-3 w-3">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span
+                                    class="relative inline-flex rounded-full h-3 w-3 bg-red-500 text-[8px] text-white justify-center items-center font-bold"></span>
+                            </span>
+                            <% } %>
+                    </a>
+
+                    <div
+                        class="w-10 h-10 bg-white rounded-full overflow-hidden border-2 border-pink-200 shadow-inner flex items-center justify-center p-1">
+                        <img src="/images/avatars/<%= user.avatar %>" alt="Avatar"
+                            class="w-full h-full object-contain pixelated"
+                            onerror="this.src='https://api.dicebear.com/7.x/pixel-art/svg?seed=<%= user.id %>'">
+                    </div>
+                    <span class="text-sm font-black text-gray-700 hidden lg:block tracking-tight">
+                        <%= user.email.split('@')[0] %>
+                    </span>
+                    <a href="/auth/logout"
+                        class="px-4 py-2 bg-white text-gray-400 rounded-full hover:bg-red-50 hover:text-red-500 transition-all text-xs font-black uppercase tracking-widest border border-gray-100">
+                        Çıkış
+                    </a>
+                </div>
+                <% } else { %>
+                    <a href="/auth/login"
+                        class="px-5 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 shadow-md transition-all active:scale-95">
+                        Giriş Yap
+                    </a>
+                    <% } %>
+
+        </div>
+    </div>
+</nav>
+
+<div class="h-20"></div>
+
+<!-- GLOBAL MESAJLAR (Flash) -->
+<% if (locals.message) { %>
+    <div class="max-w-4xl mx-auto px-6 mt-4">
+        <div
+            class="<%= message.type === 'error' ? 'bg-red-100 text-red-700 border-red-200' : 'bg-green-100 text-green-700 border-green-200' %> p-4 rounded-xl border flex items-center gap-3 shadow-sm animate-blink">
+            <% if (message.type==='error' ) { %>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <% } else { %>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <% } %>
+                        <span>
+                            <%= message.text %>
+                        </span>
+        </div>
+    </div>
+    <% } %>
+
+        <!-- FLOATING PIXEL COMPANION -->
+        <% if (user) { %>
+            <div class="fixed bottom-8 right-8 z-[100] group flex flex-col items-end gap-3 pointer-events-none">
+                <div
+                    class="bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-2xl border border-pink-100 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 pointer-events-auto">
+                    <p class="text-[10px] font-black text-pink-600 uppercase tracking-[0.2em] whitespace-nowrap">Selam,
+                        yanındayım! ✨</p>
+                </div>
+                <div class="w-20 h-20 pointer-events-auto cursor-pointer animate-float relative">
+                    <div
+                        class="absolute inset-0 bg-pink-400 rounded-full blur-2xl opacity-20 scale-0 group-hover:scale-150 transition-transform duration-700">
+                    </div>
+                    <img src="/images/avatars/<%= user.avatar %>" alt="Companion"
+                        class="w-full h-full object-contain pixelated relative z-10 drop-shadow-2xl hover:scale-125 transition-transform duration-300"
+                        onerror="this.src='https://api.dicebear.com/7.x/pixel-art/svg?seed=<%= user.id %>'">
+                </div>
+            </div>
+
+            <style>
+                @keyframes float {
+
+                    0%,
+                    100% {
+                        transform: translateY(0) rotate(0);
+                    }
+
+                    50% {
+                        transform: translateY(-15px) rotate(5deg);
+                    }
+                }
+
+                .animate-float {
+                    animation: float 4s ease-in-out infinite;
+                }
+
+                .pixelated {
+                    image-rendering: pixelated;
+                    image-rendering: crisp-edges;
+                }
+            </style>
+            <% } %>

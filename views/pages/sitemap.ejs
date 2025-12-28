@@ -1,0 +1,82 @@
+<%- include("../partials/head") %>
+    <%- include("../partials/navbar") %>
+
+        <div class="max-w-7xl mx-auto mt-24 px-6 pb-20">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-10 border-b pb-4">
+                Site Haritası <span class="text-pink-500">(Sitemap)</span>
+            </h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <!-- Kurumsal ve Ana Sayfalar -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-house text-pink-500"></i> Ana Sayfalar
+                    </h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="/" class="hover:text-pink-600 transition">• Ana Sayfa</a></li>
+                        <li><a href="/adopt" class="hover:text-pink-600 transition">• Sahiplendirme Listesi</a></li>
+                        <li><a href="/lost" class="hover:text-pink-600 transition">• Kayıp Hayvanlar</a></li>
+                        <li><a href="/announcements" class="hover:text-pink-600 transition">• Duyurular ve Haberler</a>
+                        </li>
+                        <li><a href="/gallery" class="hover:text-pink-600 transition">• Resim Galerisi</a></li>
+                        <li><a href="/auth/login" class="hover:text-pink-600 transition">• Giriş Yap</a></li>
+                        <li><a href="/auth/register" class="hover:text-pink-600 transition">• Kayıt Ol</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sahiplendirme Detayları -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-paw text-purple-500"></i> Sahiplenmeyi Bekleyenler
+                    </h2>
+                    <ul class="space-y-2 text-gray-600 max-h-80 overflow-y-auto pr-2">
+                        <% pets.forEach(p=> { %>
+                            <li><a href="/pet/<%= p.slug %>" class="hover:text-purple-600 transition">• <%= p.name %>
+                                        </a></li>
+                            <% }) %>
+                    </ul>
+                </div>
+
+                <!-- Kayıp İlanları Detayları -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-blue-500"></i> Kayıp İlanları
+                    </h2>
+                    <ul class="space-y-2 text-gray-600 max-h-80 overflow-y-auto pr-2">
+                        <% lostPets.forEach(l=> { %>
+                            <li><a href="/lost/<%= l.slug %>" class="hover:text-blue-600 transition">• <%= l.name %></a>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+
+                <!-- Duyuru Detayları -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-bullhorn text-green-500"></i> Son Duyurular
+                    </h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <% announcements.forEach(a=> { %>
+                            <li><a href="/announcements/<%= a.slug %>" class="hover:text-green-600 transition">• <%=
+                                        a.title %></a></li>
+                            <% }) %>
+                    </ul>
+                </div>
+
+                <!-- Kullanıcı ve Admin -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-user-shield text-gray-700"></i> Paneller
+                    </h2>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="/admin/dashboard" class="hover:text-gray-900 transition">• Admin Paneli</a></li>
+                        <li><a href="/care" class="hover:text-gray-900 transition">• Bakım Günlüğüm</a></li>
+                        <li><a href="/lost/my" class="hover:text-gray-900 transition">• Kayıp İlanlarım</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <%- include("../partials/footer") %>

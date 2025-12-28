@@ -1,0 +1,22 @@
+<%- include("../partials/head") %>
+    <%- include("../partials/navbar") %>
+
+        <div class="max-w-xl mx-auto mt-24 px-6">
+            <h1 class="text-2xl font-bold mb-6">✏️ Kayıp İlanını Düzenle</h1>
+
+            <form method="POST" class="space-y-4 bg-white p-6 rounded-xl shadow">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input name="name" value="<%= lost.name %>" class="w-full border p-2 rounded">
+                <input name="type" value="<%= lost.type %>" class="w-full border p-2 rounded">
+                <input name="city" value="<%= lost.city %>" class="w-full border p-2 rounded">
+                <input name="image" value="<%= lost.image %>" class="w-full border p-2 rounded">
+
+                <textarea name="description" class="w-full border p-2 rounded"><%= lost.description %></textarea>
+
+                <button class="w-full bg-pink-500 text-white py-2 rounded">
+                    Güncelle
+                </button>
+            </form>
+        </div>
+
+        <%- include("../partials/footer") %>

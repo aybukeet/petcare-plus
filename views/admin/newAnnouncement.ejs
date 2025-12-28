@@ -1,0 +1,72 @@
+<%- include("../partials/head") %>
+    <%- include("../partials/navbar") %>
+
+        <div class="min-h-screen bg-[#fafafa] relative flex items-center justify-center py-32 px-6 overflow-hidden">
+            <!-- BACKGROUND GLOWS -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div
+                    class="absolute top-[-10%] right-[-10%] w-[50%] h-[70%] bg-teal-50 rounded-full blur-[150px] opacity-40">
+                </div>
+                <div
+                    class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[70%] bg-emerald-50 rounded-full blur-[150px] opacity-40">
+                </div>
+            </div>
+
+            <div class="max-w-4xl w-full relative z-10">
+                <div class="glass-card rounded-[4rem] p-12 md:p-20 shadow-2xl border border-white/50 relative">
+
+                    <div class="mb-12 text-center">
+                        <div
+                            class="w-20 h-20 bg-teal-500 text-white rounded-3xl flex items-center justify-center text-3xl mx-auto mb-8 shadow-lg shadow-teal-100 -rotate-12">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter leading-none mb-4">
+                            Yeni <span class="text-teal-600">Duyuru</span> Yayınla
+                        </h1>
+                        <p class="text-gray-400 font-medium">Topluluğumuza en güncel haberleri ulaştırın.</p>
+                    </div>
+
+                    <form action="/admin/announcements/new" method="POST" class="space-y-8">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                        <div class="relative group">
+                            <label
+                                class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Haber
+                                Başlığı</label>
+                            <input type="text" name="title" placeholder="Örn: Yeni Barınak Açılışımız!" required
+                                class="w-full bg-white/50 border-2 border-transparent px-8 py-5 rounded-[2rem] text-xl font-black text-gray-800 focus:border-teal-300 focus:bg-white transition shadow-sm">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="relative group">
+                                <label
+                                    class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Yayın
+                                    Tarihi</label>
+                                <input type="date" name="date" required
+                                    class="w-full bg-white/50 border-2 border-transparent px-8 py-5 rounded-[2rem] text-lg font-bold text-gray-800 focus:border-teal-300 focus:bg-white transition shadow-sm">
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <label
+                                class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Duyuru
+                                İçeriği</label>
+                            <textarea name="description" rows="6" placeholder="Bize detaylardan bahsedin..." required
+                                class="w-full bg-white/50 border-2 border-transparent px-8 py-6 rounded-[3rem] text-lg font-bold text-gray-800 focus:border-teal-300 focus:bg-white transition shadow-sm leading-relaxed"></textarea>
+                        </div>
+
+                        <div class="pt-10">
+                            <button
+                                class="w-full bg-gray-900 text-white py-6 rounded-[2.5rem] font-black text-xl shadow-2xl hover:bg-teal-600 transition-all duration-300 hover:scale-(102) active:scale-95">
+                                <i class="fa-solid fa-paper-plane mr-3 opacity-50"></i> Duyuruyu Yayına Al
+                            </button>
+                            <a href="/admin/announcements"
+                                class="block text-center mt-6 text-sm font-black text-gray-400 hover:text-gray-900 transition">Listeye
+                                Geri Dön</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <%- include("../partials/footer") %>

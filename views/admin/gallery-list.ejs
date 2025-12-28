@@ -1,0 +1,48 @@
+<%- include("../partials/head") %>
+    <%- include("../partials/navbar") %>
+
+        <div class="max-w-6xl mx-auto mt-24 px-6">
+
+            <div class="flex justify-between mb-6">
+                <h1 class="text-2xl font-bold">🖼 Galeri Yönetimi</h1>
+
+                <a href="/admin/gallery/add" class="px-4 py-2 bg-pink-500 text-white rounded-xl">
+                    + Fotoğraf Ekle
+                </a>
+            </div>
+
+            <% if (images.length===0) { %>
+                <p class="text-gray-500">Henüz galeriye fotoğraf eklenmedi.</p>
+                <% } %>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <% images.forEach(img=> { %>
+                            <div
+                                class="bg-white rounded-2xl shadow-sm hover-lift overflow-hidden group border border-gray-100 p-3">
+                                <div class="relative overflow-hidden rounded-xl">
+                                    <img src="/images/gallery/<%= img.image %>"
+                                        class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
+                                    <div
+                                        class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                        <form action="/admin/gallery/delete/<%= img.id %>" method="POST">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <button
+                                                class="bg-white/90 text-red-600 px-4 py-2 rounded-full font-bold shadow-lg hover:bg-red-50 transition active:scale-95">
+                                                <i class="fa-solid fa-trash"></i> Sil
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 text-center">
+                                    <h2 class="font-bold text-gray-800 tracking-tight">
+                                        <%= img.title %>
+                                    </h2>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+
+        </div>
+
+        <%- include("../partials/footer") %>

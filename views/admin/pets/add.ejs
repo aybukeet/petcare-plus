@@ -1,0 +1,39 @@
+<%- include("../../partials/head") %>
+    <%- include("../../partials/navbar") %>
+
+        <div class="max-w-3xl mx-auto mt-24 px-6">
+
+            <h1 class="text-3xl font-bold text-pink-600 mb-6">
+                ➕ Yeni Sahiplendirme Kaydı
+            </h1>
+
+            <form action="/admin/pets/add" method="POST" class="bg-white p-6 rounded-2xl shadow space-y-4">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <input type="text" name="name" placeholder="Hayvan Adı" class="w-full px-4 py-2 border rounded-xl"
+                    required>
+
+                <select name="type" class="w-full px-4 py-2 border rounded-xl">
+                    <option value="dog">Köpek</option>
+                    <option value="cat">Kedi</option>
+                </select>
+
+                <input type="number" name="age" placeholder="Yaş" class="w-full px-4 py-2 border rounded-xl" required>
+
+                <input type="text" name="city" placeholder="Şehir" class="w-full px-4 py-2 border rounded-xl" required>
+
+                <input type="text" name="image" placeholder="Resim adı (dog_1.png)"
+                    class="w-full px-4 py-2 border rounded-xl">
+
+                <textarea name="description" placeholder="Açıklama"
+                    class="w-full px-4 py-2 border rounded-xl"></textarea>
+
+                <button class="px-6 py-3 bg-pink-500 text-white rounded-xl hover:bg-pink-600">
+                    Kaydet
+                </button>
+
+            </form>
+
+        </div>
+
+        <%- include("../../partials/footer") %>

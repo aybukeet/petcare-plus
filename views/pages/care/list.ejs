@@ -1,0 +1,187 @@
+<%- include("../../partials/head") %>
+    <%- include("../../partials/navbar") %>
+
+        <div class="min-h-screen bg-[#fafafa] relative overflow-hidden">
+            <!-- CINEMATIC BACKGROUND GLOWS (Warm Scrapbook Palette) -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div
+                    class="absolute top-[-10%] left-[-10%] w-[50%] h-[70%] bg-pink-100 rounded-full blur-[150px] opacity-30 animate-pulse">
+                </div>
+                <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[70%] bg-orange-50 rounded-full blur-[150px] opacity-30 animate-pulse"
+                    style="animation-delay: 1.5s;"></div>
+            </div>
+
+            <!-- PREMIUM HERO HEADER -->
+            <header class="relative pt-32 pb-44 bg-white border-b border-gray-50">
+                <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+                    <span
+                        class="inline-block px-4 py-1.5 bg-pink-50 text-pink-600 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6 badge-pulse">
+                        Hatıra Defteri
+                    </span>
+                    <h1 class="text-5xl md:text-7xl font-black text-gray-900 tracking-tighter leading-none mb-6">
+                        Bakım <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">Günlüğüm</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
+                        Dostunuzun en sevimli anlarını, sağlık notlarını ve günlük maceralarını ölümsüzleştirin. 🖋️✨
+                    </p>
+                </div>
+            </header>
+
+            <!-- FLOATING QUICK ACTIONS BAR -->
+            <section class="max-w-5xl mx-auto px-6 -mt-16 relative z-20 flex flex-col md:flex-row gap-6">
+                <div
+                    class="flex-1 glass-card p-4 rounded-[2rem] shadow-xl border border-white flex flex-col md:flex-row items-center gap-4">
+                    <div class="flex-1 relative w-full">
+                        <form method="GET" id="filterForm" class="flex items-center gap-4 w-full">
+                            <div class="relative w-full">
+                                <i
+                                    class="fa-solid fa-filter absolute left-5 top-1/2 -translate-y-1/2 text-pink-300"></i>
+                                <select name="type" onchange="this.form.submit()"
+                                    class="w-full bg-white/50 border-none px-12 py-4 rounded-2xl text-sm font-black text-gray-700 focus:ring-2 focus:ring-pink-100 transition appearance-none">
+                                    <option value="">Tüm Notlar</option>
+                                    <% ['Beslenme','Aşı','Veteriner','Egzersiz','Diğer'].forEach(t=> { %>
+                                        <option value="<%= t %>" <%=selectedType===t ? 'selected' : '' %>><%= t %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <a href="/care/create"
+                        class="w-full md:w-auto px-8 py-4 bg-gray-900 text-white rounded-2xl font-black shadow-xl hover:bg-pink-600 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-pen-nib"></i> Yeni Hatıra
+                    </a>
+                </div>
+
+                <div class="glass-card px-8 py-4 rounded-[2rem] shadow-xl border border-white flex items-center gap-6">
+                    <div class="text-center">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Toplam Not</p>
+                        <p class="text-2xl font-black text-gray-800">
+                            <%= notes.length %>
+                        </p>
+                    </div>
+                    <div class="w-[2px] h-8 bg-gray-100"></div>
+                    <div class="text-center">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Bu Ay</p>
+                        <p class="text-2xl font-black text-pink-500">4</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIARY TIMELINE -->
+            <main class="max-w-4xl mx-auto px-6 py-24 pb-48">
+                <% if (notes.length===0) { %>
+                    <div class="glass-card rounded-[4rem] p-24 text-center border-4 border-dashed border-white/50">
+                        <div
+                            class="w-32 h-32 bg-pink-50 rounded-full flex items-center justify-center text-pink-200 text-6xl mx-auto mb-8">
+                            <i class="fa-solid fa-book-open animate-bounce"></i>
+                        </div>
+                        <h2 class="text-3xl font-black text-gray-800 mb-4">Defter Henüz Boş</h2>
+                        <p class="text-gray-400 text-lg max-w-sm mx-auto mb-10 font-medium leading-relaxed">
+                            Dostunuzla paylaştığınız güzel anları buraya kaydederek bir dijital albüm oluşturmaya
+                            başlayın.
+                        </p>
+                        <a href="/care/create"
+                            class="text-pink-600 font-black border-b-2 border-pink-200 hover:border-pink-500 transition-all">İlk
+                            Notu Yaz</a>
+                    </div>
+                    <% } %>
+
+                        <div class="space-y-12 relative">
+                            <!-- Timeline Line -->
+                            <div class="absolute left-6 top-0 bottom-0 w-[2px] bg-gray-100/50 hidden md:block"></div>
+
+                            <% notes.forEach(n=> { %>
+                                <% let icon="fa-sticky-note" ; let color="from-gray-400 to-gray-500" ; let
+                                    shadow="shadow-gray-200" ; if(n.care_type==='Beslenme' ) { icon="fa-bowl-food" ;
+                                    color="from-orange-400 to-orange-500" ; shadow="shadow-orange-100" ; }
+                                    if(n.care_type==='Aşı' ) { icon="fa-syringe" ; color="from-blue-400 to-blue-500" ;
+                                    shadow="shadow-blue-100" ; } if(n.care_type==='Veteriner' ) { icon="fa-stethoscope"
+                                    ; color="from-red-400 to-red-500" ; shadow="shadow-red-100" ; }
+                                    if(n.care_type==='Egzersiz' ) { icon="fa-paw" ; color="from-green-400 to-green-600"
+                                    ; shadow="shadow-green-100" ; } %>
+
+                                    <div class="relative pl-0 md:pl-20 group">
+                                        <!-- Date Badge (Floating on left) -->
+                                        <div
+                                            class="absolute left-0 top-1/2 -translate-y-1/2 -ml-3 hidden md:flex flex-col items-center">
+                                            <div
+                                                class="w-12 h-12 rounded-2xl bg-white shadow-xl flex items-center justify-center z-10 border border-gray-50 group-hover:scale-110 transition duration-500">
+                                                <div class="w-4 h-4 rounded-full bg-gradient-to-br <%= color %>"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- SPIRAL NOTEBOOK CARD -->
+                                        <div class="relative">
+                                            <!-- Spirals -->
+                                            <div
+                                                class="absolute -left-2 top-10 bottom-10 w-4 flex flex-col justify-around z-20 opacity-40">
+                                                <% for(let i=0; i<8; i++) { %>
+                                                    <div
+                                                        class="w-2.5 h-2.5 bg-gray-400 rounded-full shadow-inner border border-gray-500/20">
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+
+                                            <div
+                                                class="glass-card rounded-[3rem] shadow-sm hover:shadow-2xl transition-all duration-500 border border-white ml-2 flex flex-col md:flex-row hover-lift overflow-hidden">
+                                                <!-- Left Color Accent -->
+                                                <div class="w-4 bg-gradient-to-b <%= color %>"></div>
+
+                                                <div class="flex-1 p-10 notebook-bg relative">
+                                                    <div
+                                                        class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                                                        <div class="flex items-center gap-5">
+                                                            <div
+                                                                class="w-16 h-16 bg-gradient-to-br <%= color %> text-white rounded-[1.5rem] flex items-center justify-center text-2xl shadow-lg <%= shadow %> group-hover:rotate-6 transition-transform">
+                                                                <i class="fa-solid <%= icon %>"></i>
+                                                            </div>
+                                                            <div>
+                                                                <h3
+                                                                    class="text-3xl font-black text-gray-800 tracking-tight">
+                                                                    <%= n.pet_name %>
+                                                                </h3>
+                                                                <p
+                                                                    class="text-xs font-black uppercase tracking-[0.2em] text-gray-400">
+                                                                    <%= n.care_type %>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="px-5 py-2 bg-white/60 backdrop-blur-md rounded-2xl border border-white shadow-sm text-xs font-black text-gray-500 uppercase tracking-widest">
+                                                            <%= new Date(n.created_at).toLocaleDateString('tr-TR', {
+                                                                day: 'numeric' , month: 'long' , year: 'numeric' }) %>
+                                                        </div>
+                                                    </div>
+
+                                                    <p
+                                                        class="text-xl text-gray-700 leading-relaxed font-medium italic mb-10 first-letter:text-4xl first-letter:font-black first-letter:text-pink-500 first-letter:float-left first-letter:mr-2">
+                                                        "<%= n.note %>"
+                                                    </p>
+
+                                                    <div
+                                                        class="flex justify-end gap-3 pt-6 border-t border-gray-100/50">
+                                                        <a href="/care/edit/<%= n.id %>"
+                                                            class="px-6 py-3 bg-white text-indigo-600 rounded-2xl font-black text-xs hover:bg-indigo-600 hover:text-white transition-all shadow-sm border border-gray-50">
+                                                            <i class="fa-solid fa-edit mr-2"></i> Düzenle
+                                                        </a>
+                                                        <form action="/care/delete/<%= n.id %>" method="POST"
+                                                            onsubmit="return confirm('Bu anıyı silmek istediğinize emin misiniz?');">
+                                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                            <button
+                                                                class="px-6 py-3 bg-red-50 text-red-600 rounded-2xl font-black text-xs hover:bg-red-600 hover:text-white transition-all shadow-sm">
+                                                                <i class="fa-solid fa-trash-can mr-2"></i> Sil
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                        </div>
+            </main>
+        </div>
+
+        <%- include("../../partials/footer") %>

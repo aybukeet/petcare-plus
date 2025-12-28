@@ -1,0 +1,47 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+
+<div class="max-w-4xl mx-auto px-6 py-12">
+
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+
+        <!-- IMAGE -->
+        <div class="w-full h-[350px] overflow-hidden">
+            <img src="/images/pets/<%= pet.image %>" 
+                 class="w-full h-full object-cover" />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="p-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                <%= pet.name %>
+            </h1>
+
+            <p class="text-gray-600 text-lg mb-2">
+                <i class="fa-solid fa-paw"></i> Tür: <%= pet.type %>
+            </p>
+
+            <p class="text-gray-600 text-lg mb-2">
+                <i class="fa-regular fa-calendar"></i> Yaş: <%= pet.age %>
+            </p>
+
+            <p class="text-gray-600 text-lg mb-2">
+                <i class="fa-solid fa-location-dot"></i> Şehir: <%= pet.city %>
+            </p>
+
+            <p class="text-gray-700 mt-4 leading-relaxed">
+                <%= pet.description || "Bu dost hakkında ayrıntılı bilgi eklenmemiş." %>
+            </p>
+
+            <div class="mt-8">
+                <a href="/adopt" 
+                   class="px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white rounded-xl shadow">
+                    ← Sahiplendirme Sayfasına Dön
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<%- include("../partials/footer") %>

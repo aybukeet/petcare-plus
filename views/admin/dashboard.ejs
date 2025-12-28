@@ -1,0 +1,236 @@
+<%- include("../partials/head") %>
+    <%- include("../partials/navbar") %>
+
+        <div class="min-h-screen bg-[#fafafa] relative overflow-hidden">
+            <!-- BACKGROUND GLOWS -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div
+                    class="absolute top-[-10%] right-[-10%] w-[50%] h-[70%] bg-indigo-100 rounded-full blur-[150px] opacity-30">
+                </div>
+                <div
+                    class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[70%] bg-violet-100 rounded-full blur-[150px] opacity-30">
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto pt-32 pb-40 px-6 relative z-10">
+                <!-- HEADER -->
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div>
+                        <span
+                            class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-600 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-4">
+                            Sistem Kontrol Paneli
+                        </span>
+                        <h1 class="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter leading-none">
+                            Yönetim <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Dashboard</span>
+                        </h1>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div
+                            class="glass-card px-6 py-3 rounded-2xl flex items-center gap-4 shadow-xl border border-white/50">
+                            <div class="relative">
+                                <div class="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                                <div class="absolute inset-0 w-3 h-3 bg-red-500 rounded-full"></div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Canlı İzleme
+                                </p>
+                                <p class="text-lg font-black text-gray-800">
+                                    <%= onlineUsers %> <span class="text-xs font-bold text-gray-400">Aktif</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS GRID -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+
+                    <!-- Users Card -->
+                    <div
+                        class="glass-card p-10 rounded-[3rem] shadow-xl hover-lift border border-white group relative overflow-hidden">
+                        <div
+                            class="absolute -right-6 -bottom-6 text-pink-50 text-9xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Kullanıcı Sayısı
+                        </p>
+                        <div class="flex items-end gap-3">
+                            <h3 class="text-5xl font-black text-gray-900">
+                                <%= userCount %>
+                            </h3>
+                            <span class="text-xs font-bold text-green-500 mb-2">+12%</span>
+                        </div>
+                        <div class="mt-8">
+                            <a href="/admin/users"
+                                class="text-xs font-black text-pink-500 hover:text-pink-600 transition flex items-center gap-2">
+                                Yönetime Git <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pets Card -->
+                    <div
+                        class="glass-card p-10 rounded-[3rem] shadow-xl hover-lift border border-white group relative overflow-hidden">
+                        <div
+                            class="absolute -right-6 -bottom-6 text-indigo-50 text-9xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Can Dostlarımız
+                        </p>
+                        <div class="flex items-end gap-3">
+                            <h3 class="text-5xl font-black text-gray-900">
+                                <%= petCount %>
+                            </h3>
+                            <span class="text-xs font-bold text-indigo-500 mb-2">Aktif</span>
+                        </div>
+                        <div class="mt-8">
+                            <a href="/admin/pets"
+                                class="text-xs font-black text-indigo-500 hover:text-indigo-600 transition flex items-center gap-2">
+                                İlanları Düzenle <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Lost Card -->
+                    <div
+                        class="glass-card p-10 rounded-[3rem] shadow-xl hover-lift border border-white group relative overflow-hidden">
+                        <div
+                            class="absolute -right-6 -bottom-6 text-orange-50 text-9xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
+                            <i class="fa-solid fa-magnifying-glass-paw"></i>
+                        </div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Kayıp İlanları
+                        </p>
+                        <div class="flex items-end gap-3">
+                            <h3 class="text-5xl font-black text-gray-900">
+                                <%= lostCount %>
+                            </h3>
+                            <span class="text-xs font-bold text-orange-500 mb-2">Takipte</span>
+                        </div>
+                        <div class="mt-8">
+                            <a href="/admin/lost"
+                                class="text-xs font-black text-orange-500 hover:text-orange-600 transition flex items-center gap-2">
+                                İlanları Yönet <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Announcements Card -->
+                    <div
+                        class="glass-card p-10 rounded-[3rem] shadow-xl hover-lift border border-white group relative overflow-hidden">
+                        <div
+                            class="absolute -right-6 -bottom-6 text-teal-50 text-9xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Duyuru / Haber
+                        </p>
+                        <div class="flex items-end gap-3">
+                            <h3 class="text-5xl font-black text-gray-900">
+                                <%= announcementCount %>
+                            </h3>
+                            <span class="text-xs font-bold text-teal-500 mb-2">Yayında</span>
+                        </div>
+                        <div class="mt-8">
+                            <a href="/admin/announcements"
+                                class="text-xs font-black text-teal-500 hover:text-teal-600 transition flex items-center gap-2">
+                                Bülteni Güncelle <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUICK ACTIONS & SECONDARY STATS -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- Analytics Mockup -->
+                    <div
+                        class="lg:col-span-8 glass-card rounded-[3.5rem] p-12 shadow-xl border border-white relative overflow-hidden">
+                        <div class="flex justify-between items-center mb-10">
+                            <h3 class="text-2xl font-black text-gray-800 tracking-tight">Ziyaretçi Trendi</h3>
+                            <div class="px-4 py-2 bg-gray-50 rounded-xl text-xs font-bold text-gray-400">Son 30 Gün
+                            </div>
+                        </div>
+
+                        <!-- Simple Vector Mockup of a Graph -->
+                        <div class="h-64 flex items-end gap-4 w-full px-4">
+                            <% [40, 60, 45, 90, 65, 80, 55, 100, 75, 40].forEach((h, i)=> { %>
+                                <div class="flex-1 bg-gradient-to-t from-indigo-500 to-violet-500 rounded-t-2xl transition-all duration-1000 origin-bottom hover:scale-y-110 cursor-pointer"
+                                    style="height: <%= h %>%"></div>
+                                <% }) %>
+                        </div>
+
+                        <div class="mt-12 flex justify-between items-center">
+                            <div>
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Toplam
+                                    Ziyaret</p>
+                                <p class="text-3xl font-black text-gray-800">
+                                    <%= totalVisitors %>
+                                </p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Dönüşüm
+                                    Oranı</p>
+                                <p class="text-3xl font-black text-green-500">24.8%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Access sidebar -->
+                    <div class="lg:col-span-4 space-y-8">
+                        <div
+                            class="bg-gray-900 rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden group">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500">
+                            </div>
+                            <h4 class="text-xl font-black mb-8 relative z-10">Hızlı İşlemler</h4>
+                            <div class="space-y-4 relative z-10">
+                                <a href="/admin/pets/add"
+                                    class="flex items-center justify-between p-4 bg-white/10 rounded-2xl hover:bg-white text-white hover:text-gray-900 transition font-bold group/btn">
+                                    <span>Yeni Hayvan Ekle</span>
+                                    <i class="fa-solid fa-plus transition group-hover/btn:rotate-90"></i>
+                                </a>
+                                <a href="/admin/announcements/new"
+                                    class="flex items-center justify-between p-4 bg-white/10 rounded-2xl hover:bg-white text-white hover:text-gray-900 transition font-bold group/btn">
+                                    <span>Duyuru Hazırla</span>
+                                    <i class="fa-solid fa-paper-plane transition group-hover/btn:rotate-12"></i>
+                                </a>
+                                <a href="/admin/gallery/add"
+                                    class="flex items-center justify-between p-4 bg-white/10 rounded-2xl hover:bg-white text-white hover:text-gray-900 transition font-bold group/btn">
+                                    <span>Galeriye Fotoğraf</span>
+                                    <i class="fa-solid fa-camera "></i>
+                                </a>
+                                <a href="/admin/adopt/requests"
+                                    class="flex items-center justify-between p-4 bg-pink-500/20 rounded-2xl hover:bg-white text-white hover:text-pink-600 transition font-bold group/btn border border-pink-500/30">
+                                    <span>Sahiplenme Talepleri</span>
+                                    <i class="fa-solid fa-heart-circle-check transition group-hover/btn:scale-110"></i>
+                                </a>
+                                <a href="/admin/lost/sightings"
+                                    class="flex items-center justify-between p-4 bg-blue-500/20 rounded-2xl hover:bg-white text-white hover:text-blue-600 transition font-bold group/btn border border-blue-500/30">
+                                    <span>Kayıp Bildirimleri</span>
+                                    <i class="fa-solid fa-eye transition group-hover/btn:scale-110"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-10 rounded-[3rem] border border-white">
+                            <h4 class="font-black text-gray-800 mb-6 flex items-center justify-between">
+                                Sistem Durumu
+                                <span class="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="flex justify-between text-xs font-bold">
+                                    <span class="text-gray-400">Sunucu</span>
+                                    <span class="text-green-500">Stabil (99.9%)</span>
+                                </div>
+                                <div class="flex justify-between text-xs font-bold">
+                                    <span class="text-gray-400">Veritabanı</span>
+                                    <span class="text-indigo-500">Bağlı</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include("../partials/footer") %>

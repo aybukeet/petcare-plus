@@ -1,0 +1,48 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+
+<div class="max-w-7xl mx-auto mt-24 px-6">
+
+    <h1 class="text-3xl font-bold text-pink-600 mb-6">
+        Hoş geldin 👋
+    </h1>
+
+    <p class="text-gray-600 mb-10">
+        Bu panel üzerinden kendi işlemlerini yönetebilirsin.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- KAYIP İLANLARIM -->
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-semibold mb-2">
+                📌 Kayıp İlanlarım
+            </h2>
+            <p class="text-gray-600 mb-4">
+                Eklediğin kayıp hayvan ilanlarını görüntüle.
+            </p>
+            <a href="/lost/my"
+               class="inline-block px-4 py-2 bg-pink-500 text-white rounded-xl">
+                Görüntüle
+            </a>
+        </div>
+
+        <!-- BAKIM GÜNLÜĞÜM -->
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-semibold mb-2">
+                📓 Bakım Günlüğüm
+            </h2>
+            <p class="text-gray-600 mb-4">
+                Hayvanın için günlük bakım notları ekle.
+            </p>
+            <a href="/care"
+               class="inline-block px-4 py-2 bg-pink-500 text-white rounded-xl">
+                Günlüğe Git
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<%- include("../partials/footer") %>

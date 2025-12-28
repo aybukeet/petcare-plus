@@ -1,0 +1,59 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+
+<div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- SOL: DUYURU LİSTESİ -->
+    <aside class="md:col-span-1">
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">
+                Diğer Duyurular
+            </h2>
+
+            <ul class="space-y-3">
+                <% announcements.forEach(item => { %>
+                    <li>
+                        <a href="/announcements/<%= item.id %>"
+                           class="block px-4 py-3 rounded-xl transition
+                           <%= item.id === announcement.id 
+                                ? 'bg-purple-100 text-purple-700 font-semibold' 
+                                : 'hover:bg-gray-100 text-gray-700' %>">
+                            <%= item.title %>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- SAĞ: DUYURU DETAY -->
+    <section class="md:col-span-2">
+        <div class="bg-white rounded-3xl shadow-lg p-10">
+
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                <%= announcement.title %>
+            </h1>
+
+            <p class="text-gray-500 text-sm mb-6">
+                <i class="fa-regular fa-calendar"></i>
+                <%= announcement.date %>
+            </p>
+
+            <p class="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
+                <%= announcement.description %>
+            </p>
+
+            <div class="mt-10">
+                <a href="/announcements"
+                   class="inline-block px-6 py-3 bg-purple-500 hover:bg-purple-600
+                          text-white rounded-xl shadow transition">
+                    ← Tüm Duyurular
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<%- include("../partials/footer") %>
