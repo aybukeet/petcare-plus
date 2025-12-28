@@ -14,9 +14,17 @@ module.exports = (req, res, next) => {
     if (protectedMethods.includes(req.method)) {
         const clientToken = req.body._csrf || req.headers["x-csrf-token"];
 
+
+
+
         if (!clientToken || clientToken !== req.session.csrfToken) {
             req.session.message = { type: "error", text: "Güvenlik doğrulaması başarısız (CSRF). Lütfen formu tekrar gönderin." };
-            return res.redirect("back");
+            // Avoid "Cannot GET /back" error by redirecting to a known safe path if referer is missing or problematic
+            const referer = req.get('Referer');
+            if (referer) {
+                return res.redirect(referer);
+            }
+            return res.redirect("/");
         }
     }
 

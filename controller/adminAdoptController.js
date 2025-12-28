@@ -8,7 +8,7 @@ exports.list = (req, res) => {
 };
 
 exports.createForm = (req, res) => {
-    res.render("admin/adopt/create");
+    res.render("admin/pets/add", { title: "Yeni Hayvan Ekle" });
 };
 
 exports.create = (req, res) => {
