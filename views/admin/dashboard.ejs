@@ -153,9 +153,9 @@
 
                         <!-- Simple Vector Mockup of a Graph -->
                         <div class="h-64 flex items-end gap-4 w-full px-4">
-                            <% [40, 60, 45, 90, 65, 80, 55, 100, 75, 40].forEach((h, i)=> { %>
+                            <% graphData.forEach((h)=> { %>
                                 <div class="flex-1 bg-gradient-to-t from-indigo-500 to-violet-500 rounded-t-2xl transition-all duration-1000 origin-bottom hover:scale-y-110 cursor-pointer"
-                                    style="height: <%= h %>%"></div>
+                                    style="--h: <%= h %>%; height: var(--h);"></div>
                                 <% }) %>
                         </div>
 

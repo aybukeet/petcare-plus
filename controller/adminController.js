@@ -70,6 +70,7 @@ exports.dashboard = (req, res) => {
                         announcementCount,
                         totalVisitors: res.locals.totalVisitors || 0,
                         onlineUsers: res.locals.onlineUsers || 0,
+                        graphData: [40, 60, 45, 90, 65, 80, 55, 100, 75, 40],
                         title: "Admin Panel"
                     });
 
