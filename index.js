@@ -4,25 +4,24 @@ const app = express();
 const path = require("path");
 const session = require("express-session");
 
-// View Engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Public Klasör
+
 app.use(express.static(path.join(__dirname, "public")));
 
-// Body Parsers
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// 🔐 SESSION (ROUTELARDAN ÖNCE!)
+
 app.use(session({
     secret: process.env.SESSION_SECRET || "default_secret_key",
     resave: false,
     saveUninitialized: false
 }));
 
-// Yeni Middlewares
+
 const statsMiddleware = require("./middleware/statsMiddleware");
 const csrfMiddleware = require("./middleware/csrfMiddleware");
 const messageMiddleware = require("./middleware/messageMiddleware");
@@ -47,7 +46,6 @@ app.use((req, res, next) => {
 });
 
 
-// ROUTES
 const indexRoute = require("./routes/index");
 const adoptRoute = require("./routes/adopt");
 const lostRoute = require("./routes/lost");
@@ -62,7 +60,6 @@ const adminLostRoute = require("./routes/adminLost");
 const adminGalleryRoute = require("./routes/adminGallery");
 const sitemapRoute = require("./routes/sitemap");
 
-// ROUTE BAĞLAMALARI
 app.use("/", indexRoute);
 app.use("/sitemap", sitemapRoute);
 app.use("/adopt", adoptRoute);
@@ -78,8 +75,6 @@ app.use("/admin/lost", adminLostRoute);
 app.use("/admin/gallery", adminGalleryRoute);
 
 
-
-// Server başlat
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log("Server çalışıyor: http://localhost:" + PORT);

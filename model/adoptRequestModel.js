@@ -1,6 +1,5 @@
 const db = require("./db");
 
-// YENI TALEP OLUŞTUR
 exports.createRequest = (data, callback) => {
     const sql = `
         INSERT INTO adoption_requests (pet_id, user_id, name, email, phone, reason, has_other_pets)
@@ -13,7 +12,6 @@ exports.createRequest = (data, callback) => {
     });
 };
 
-// TÜM TALEPLERİ LİSTELE (Admin için)
 exports.getAllRequests = (callback) => {
     const sql = `
         SELECT r.*, p.name as pet_name, u.email as user_email 
@@ -40,7 +38,6 @@ exports.getRequestById = (id, callback) => {
     });
 };
 
-// DURUM GÜNCELLE (Onayla/Reddet)
 exports.updateStatus = (id, status, callback) => {
     const sql = "UPDATE adoption_requests SET status = ? WHERE id = ?";
     db.query(sql, [status, id], (err, results) => {

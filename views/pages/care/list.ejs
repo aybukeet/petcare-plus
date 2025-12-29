@@ -2,7 +2,7 @@
     <%- include("../../partials/navbar") %>
 
         <div class="min-h-screen bg-[#fafafa] relative overflow-hidden">
-            <!-- CINEMATIC BACKGROUND GLOWS (Warm Scrapbook Palette) -->
+            
             <div class="absolute inset-0 z-0 pointer-events-none">
                 <div
                     class="absolute top-[-10%] left-[-10%] w-[50%] h-[70%] bg-pink-100 rounded-full blur-[150px] opacity-30 animate-pulse">
@@ -11,7 +11,6 @@
                     style="animation-delay: 1.5s;"></div>
             </div>
 
-            <!-- PREMIUM HERO HEADER -->
             <header class="relative pt-32 pb-44 bg-white border-b border-gray-50">
                 <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
                     <span
@@ -28,7 +27,6 @@
                 </div>
             </header>
 
-            <!-- FLOATING QUICK ACTIONS BAR -->
             <section class="max-w-5xl mx-auto px-6 -mt-16 relative z-20 flex flex-col md:flex-row gap-6">
                 <div
                     class="flex-1 glass-card p-4 rounded-[2rem] shadow-xl border border-white flex flex-col md:flex-row items-center gap-4">
@@ -69,7 +67,6 @@
                 </div>
             </section>
 
-            <!-- DIARY TIMELINE -->
             <main class="max-w-4xl mx-auto px-6 py-24 pb-48">
                 <% if (notes.length===0) { %>
                     <div class="glass-card rounded-[4rem] p-24 text-center border-4 border-dashed border-white/50">
@@ -89,7 +86,7 @@
                     <% } %>
 
                         <div class="space-y-12 relative">
-                            <!-- Timeline Line -->
+                            
                             <div class="absolute left-6 top-0 bottom-0 w-[2px] bg-gray-100/50 hidden md:block"></div>
 
                             <% notes.forEach(n=> { %>

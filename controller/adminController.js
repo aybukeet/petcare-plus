@@ -4,7 +4,6 @@ const Lost = require("../model/lostPetsModel");
 const Announcement = require("../model/announcementModel");
 
 
-// Listeleme
 exports.listPets = (req, res) => {
     Pets.getAllPets((err, pets) => {
         if (err) return res.send("DB hatası");
@@ -12,7 +11,6 @@ exports.listPets = (req, res) => {
     });
 };
 
-// Silme
 exports.deletePet = (req, res) => {
     const id = req.params.id;
 

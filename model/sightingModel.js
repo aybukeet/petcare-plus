@@ -1,6 +1,5 @@
 const db = require("./db");
 
-// BİLDİRİM OLUŞTUR
 exports.createSighting = (data, callback) => {
     const sql = `
         INSERT INTO lost_sightings (lost_pet_id, user_id, finder_name, finder_contact, location_found, time_found, message)
@@ -13,7 +12,6 @@ exports.createSighting = (data, callback) => {
     });
 };
 
-// YÖNETİCİ İÇİN TÜM BİLDİRİMLER
 exports.getAllSightings = (callback) => {
     const sql = `
         SELECT s.*, p.name as pet_name, u.email as user_email
@@ -40,7 +38,6 @@ exports.getSightingById = (id, callback) => {
     });
 };
 
-// DURUM GÜNCELLE
 exports.updateStatus = (id, status, callback) => {
     const sql = "UPDATE lost_sightings SET status = ? WHERE id = ?";
     db.query(sql, [status, id], (err, results) => {

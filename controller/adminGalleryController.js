@@ -1,6 +1,5 @@
 const Gallery = require("../model/galleryModel");
 
-/* LİSTE */
 exports.list = (req, res) => {
     Gallery.getAll((err, images) => {
         if (err) return res.send("DB HATASI");
@@ -12,12 +11,10 @@ exports.list = (req, res) => {
     });
 };
 
-/* FORM */
 exports.addForm = (req, res) => {
     res.render("admin/gallery-add", { title: "Fotoğraf Ekle" });
 };
 
-/* KAYDET */
 exports.create = (req, res) => {
     const data = {
         title: req.body.title,
@@ -29,7 +26,6 @@ exports.create = (req, res) => {
     });
 };
 
-/* SİL */
 exports.delete = (req, res) => {
     Gallery.deleteById(req.params.id, () => {
         res.redirect("/admin/gallery");

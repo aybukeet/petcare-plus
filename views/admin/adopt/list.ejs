@@ -2,7 +2,7 @@
     <%- include("../../partials/navbar") %>
 
         <div class="min-h-screen bg-[#fafafa] relative pb-40">
-            <!-- BACKGROUND GLOWS -->
+            
             <div class="absolute inset-0 z-0 pointer-events-none">
                 <div
                     class="absolute top-[-10%] right-[-10%] w-[50%] h-[70%] bg-pink-50 rounded-full blur-[150px] opacity-30">
@@ -14,7 +14,7 @@
 
             <div class="max-w-7xl mx-auto pt-32 px-6 relative z-10">
 
-                <!-- HEADER -->
+               
                 <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div>
                         <span
@@ -33,19 +33,19 @@
                     </a>
                 </div>
 
-                <!-- TILED LIST -->
+                
                 <div class="space-y-4">
                     <% pets.forEach(p=> { %>
                         <div
                             class="glass-card p-6 rounded-[2rem] shadow-sm hover:shadow-xl hover-lift border border-white/80 transition-all duration-300 flex flex-col md:flex-row items-center gap-6 group">
 
-                            <!-- Avatar Area -->
+                           
                             <div
                                 class="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-500 font-black text-xl shadow-inner group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-500">
                                 <i class="fa-solid fa-hand-holding-heart"></i>
                             </div>
 
-                            <!-- Details Area -->
+                            
                             <div class="flex-1 text-center md:text-left">
                                 <h3 class="text-xl font-black text-gray-800 tracking-tight">
                                     <%= p.name %>
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
 
-                            <!-- Actions Area -->
+                            
                             <div class="flex items-center gap-3">
                                 <form action="/admin/adopt/delete/<%= p.id %>" method="POST"
                                     onsubmit="return confirm('Bu ilanı silmek istediğinize emin misiniz?')">

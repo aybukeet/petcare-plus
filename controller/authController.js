@@ -1,11 +1,9 @@
 const User = require("../model/userModel");
 
-// LOGIN FORM
 exports.loginForm = (req, res) => {
     res.render("auth/login", { title: "Giriş Yap" });
 };
 
-// LOGIN İŞLEMİ
 exports.login = (req, res) => {
     const { email, password } = req.body;
 
@@ -20,15 +18,14 @@ exports.login = (req, res) => {
             return res.redirect("/auth/login");
         }
 
-        // SESSION'A USER KOY
         req.session.user = {
             id: user.id,
             email: user.email,
-            role: user.role,   // admin / user
+            role: user.role,   
             avatar: user.avatar || "avatar1.png"
         };
 
-        // ROLE GÖRE YÖNLENDİR
+        
         if (user.role === "admin") {
             res.redirect("/admin/dashboard");
         } else {
@@ -37,22 +34,19 @@ exports.login = (req, res) => {
     });
 };
 
-// LOGOUT
 exports.logout = (req, res) => {
     req.session.destroy(() => {
         res.redirect("/auth/login");
     });
 };
 
-// REGISTER FORM
 exports.registerForm = (req, res) => {
     res.render("auth/register", { title: "Kayıt Ol" });
 };
 
-// REGISTER İŞLEMİ
 exports.register = (req, res) => {
     const { email, password, avatar } = req.body;
-    // Basit Validasyon
+    
     if (!email || !password) {
         req.session.message = { type: "error", text: "Lütfen tüm alanları doldurun" };
         return res.redirect("/auth/register");
@@ -93,7 +87,6 @@ exports.register = (req, res) => {
     });
 };
 
-// SAYFA
 exports.forgotPage = (req, res) => {
     res.render("auth/forgotPassword", {
         message: null,
@@ -101,7 +94,6 @@ exports.forgotPage = (req, res) => {
     });
 };
 
-// FORM POST
 exports.forgotPassword = (req, res) => {
     const { email } = req.body;
 
@@ -115,7 +107,6 @@ exports.forgotPassword = (req, res) => {
             });
         }
 
-        // GERÇEK PROJEDE: mail gönderilir
         return res.render("auth/forgotPassword", {
             message: "Şifre sıfırlama bağlantısı e-posta adresinize gönderildi 📧 (demo)",
             title: "Şifremi Unuttum"

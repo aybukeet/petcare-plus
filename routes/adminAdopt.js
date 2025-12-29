@@ -8,7 +8,6 @@ router.get("/create", isAdmin, adminAdoptController.createForm);
 router.post("/create", isAdmin, adminAdoptController.create);
 router.post("/delete/:id", isAdmin, adminAdoptController.delete);
 
-// Requests
 router.get("/requests", isAdmin, adminAdoptController.listRequests);
 router.post("/requests", isAdmin, adminAdoptController.processRequest);
 

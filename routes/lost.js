@@ -3,10 +3,7 @@ const router = express.Router();
 const lostController = require("../controller/lostController");
 const api = require("../middleware/authMiddleware");
 
-// public
 router.get("/", lostController.list);
-
-// user
 router.get("/my", lostController.myLost);
 router.get("/create", lostController.createForm);
 router.post("/create", lostController.create);
@@ -15,8 +12,6 @@ router.post("/edit/:id", lostController.update);
 router.post("/delete/:id", lostController.delete);
 router.get("/found/:id", api.isAuth, lostController.foundForm);
 router.post("/found/:id", api.isAuth, lostController.submitFound);
-
-// ✅ en sona
 router.get("/:slug", lostController.detail);
 
 module.exports = router;

@@ -4,7 +4,7 @@
         <div class="min-h-screen bg-[#fafafa] relative pb-40">
             <div class="max-w-7xl mx-auto pt-32 px-6">
 
-                <!-- HEADER -->
+                
                 <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div>
                         <span
@@ -23,7 +23,7 @@
                     </a>
                 </div>
 
-                <!-- SEARCH / FILTER BAR (Aesthetic only) -->
+                
                 <div
                     class="glass-card p-4 rounded-3xl mb-10 flex flex-col md:flex-row gap-4 border border-white/50 shadow-sm">
                     <div class="flex-1 relative">
@@ -41,19 +41,19 @@
                     </div>
                 </div>
 
-                <!-- TILED LIST -->
+                
                 <div class="space-y-4">
                     <% pets.forEach(p=> { %>
                         <div
                             class="glass-card p-6 rounded-[2rem] shadow-sm hover:shadow-xl hover-lift border border-white/80 transition-all duration-300 flex flex-col md:flex-row items-center gap-6 group">
 
-                            <!-- ID / Avatar Area -->
+                           
                             <div
                                 class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 font-black text-xl shadow-inner group-hover:bg-pink-500 group-hover:text-white transition-colors duration-500">
                                 #<%= p.id %>
                             </div>
 
-                            <!-- Details Area -->
+                           
                             <div class="flex-1 text-center md:text-left">
                                 <h3 class="text-xl font-black text-gray-800 tracking-tight">
                                     <%= p.name %>
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
 
-                            <!-- Actions Area -->
+                            
                             <div class="flex items-center gap-3">
                                 <a href="/admin/pets/edit/<%= p.id %>"
                                     class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:shadow-lg transition shadow-sm border border-gray-50">

@@ -1,9 +1,5 @@
 const LostPets = require("../model/lostPetsModel");
 
-/* =========================================================
-   📌 TÜM KAYIP İLANLARI (PUBLIC)
-   GET /lost?type=&city=
-========================================================= */
 exports.list = (req, res) => {
   const filters = {
     type: req.query.type || "",
@@ -25,10 +21,6 @@ exports.list = (req, res) => {
   });
 };
 
-/* =========================================================
-   📌 DETAY SAYFASI (PUBLIC)
-   GET /lost/:id
-========================================================= */
 exports.detail = (req, res) => {
   const slug = req.params.slug;
 
@@ -43,11 +35,6 @@ exports.detail = (req, res) => {
   });
 };
 
-/* =========================================================
-   📌 "BULDUM" BİLDİRİMİ (USER)
-   GET /lost/found/:id
-   (şimdilik basit)
-========================================================= */
 exports.foundForm = (req, res) => {
   const id = req.params.id;
   LostPets.getLostById(id, (err, lost) => {
@@ -85,10 +72,6 @@ exports.submitFound = (req, res) => {
   });
 };
 
-/* =========================================================
-   📌 BENİM KAYIP İLANLARIM (USER)
-   GET /lost/my
-========================================================= */
 exports.myLost = (req, res) => {
   if (!req.session?.user) return res.redirect("/auth/login");
 
@@ -100,28 +83,17 @@ exports.myLost = (req, res) => {
       return res.status(500).send("DB HATASI");
     }
 
-    // ✅ Tek isim: lostPets
-    // ✅ Tek view: user/myLostPets
     res.render("user/myLostPets", { lostPets, title: "Benim İlanlarım" });
 
-    // Eğer sen bunu views/pages/lostMy.ejs kullanacaksan:
-    // res.render("pages/lostMy", { lostPets });
+  
   });
 };
 
-/* =========================================================
-   📌 CREATE FORM (USER)
-   GET /lost/create
-========================================================= */
 exports.createForm = (req, res) => {
   if (!req.session?.user) return res.redirect("/auth/login");
   res.render("pages/lostCreate");
 };
 
-/* =========================================================
-   📌 YENİ KAYIP İLANI EKLE (USER)
-   POST /lost/create
-========================================================= */
 exports.create = (req, res) => {
   if (!req.session?.user) return res.redirect("/auth/login");
 
@@ -149,10 +121,6 @@ exports.create = (req, res) => {
   });
 };
 
-/* =========================================================
-   📌 DÜZENLE FORMU (USER)
-   GET /lost/edit/:id
-========================================================= */
 exports.editForm = (req, res) => {
   if (!req.session?.user) return res.redirect("/auth/login");
 
@@ -170,10 +138,6 @@ exports.editForm = (req, res) => {
   });
 };
 
-/* =========================================================
-   📌 GÜNCELLE (USER)
-   POST /lost/edit/:id
-========================================================= */
 exports.update = (req, res) => {
   if (!req.session?.user) return res.redirect("/auth/login");
 
@@ -198,10 +162,6 @@ exports.update = (req, res) => {
   });
 };
 
-/* =========================================================
-   📌 SİL (USER)
-   POST /lost/delete/:id   ✅ (POST önerilir)
-========================================================= */
 exports.delete = (req, res) => {
   if (!req.session?.user) return res.redirect("/auth/login");
 

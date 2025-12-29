@@ -32,8 +32,6 @@ exports.delete = (req, res) => {
     });
 };
 
-// --- ADOPTION REQUESTS ---
-
 const AdoptRequest = require("../model/adoptRequestModel");
 
 exports.listRequests = (req, res) => {

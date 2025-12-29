@@ -32,8 +32,6 @@ exports.delete = (req, res) => {
     });
 };
 
-// --- SIGHTINGS ---
-
 const Sighting = require("../model/sightingModel");
 
 exports.listSightings = (req, res) => {
@@ -55,15 +53,10 @@ exports.processSighting = (req, res) => {
             if (err) return res.send("DB Hatası");
 
             if (status === 'approved') {
-                // Kayıp ilanı kapat (bulundu say)
                 LostPets.deactivate(sighting.lost_pet_id, () => { });
 
-                // Bildirimi yapana teşekkür mesajı
                 Notifications.create(sighting.user_id, `Teşekkürler! ${sighting.pet_name} hakkındaki bildiriminiz bize ulaştı ve doğrulandı. Sayenizde bir can dostumuz kurtuldu!`, "success");
 
-                // İlan sahibine de bildirim gitmeli (sighting.user_id bulan kişi, ilan sahibi kim? Onu da bulmamız lazım ama şimdilik sadece bulana teşekkür edelim veya karışıklık olmasın)
-                // İdealde: LostPets.getById(sighting.lost_pet_id) -> owner_id -> Notify owner.
-                // Şimdilik sadece bildirim yapana dönüyoruz.
             } else {
                 Notifications.create(sighting.user_id, `${sighting.pet_name} hakkındaki bildiriminiz doğrulanamadığı için reddedildi.`, "error");
             }

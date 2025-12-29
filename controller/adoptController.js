@@ -3,7 +3,6 @@ const Pets = require("../model/petsModel");
 exports.list = (req, res) => {
     const { type, age, city } = req.query;
 
-    // Eğer filtre yoksa → direkt tümünü çek
     if (!type && !age && !city) {
         return Pets.getAllPets((err, pets) => {
             if (err) return res.status(500).send("DB hatası: " + err);
@@ -11,7 +10,6 @@ exports.list = (req, res) => {
         });
     }
 
-    // Filtre varsa → filtreli sorgu
     Pets.filterPets(type, age, city, (err, pets) => {
         if (err) return res.status(500).send("DB hatası: " + err);
         return res.render("pages/adopt", { pets, title: "Sahiplendirme", selectedType: type });
@@ -44,7 +42,7 @@ exports.requestForm = (req, res) => {
 
 exports.submitRequest = (req, res) => {
     const petId = req.params.id;
-    const userId = req.session.user.id; // User middleware'den gelmeli
+    const userId = req.session.user.id; 
 
     const requestData = {
         pet_id: petId,
